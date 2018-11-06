@@ -17,6 +17,7 @@ class Definition implements \JsonSerializable
 
     const ITEMS_AS_COLLECTION = 0; // use anyOf instead of strict collection
     const ITEMS_AS_LIST = 1;
+    const ITEMS_AS_OBJECT = 2;
 
     /**
      * link to the resource identifier
@@ -416,7 +417,17 @@ class Definition implements \JsonSerializable
                 $items[] = $item->flatten();
             }
 
-            if ($this->getCollectionMode() == self::ITEMS_AS_LIST) {
+            if ($this->getCollectionMode() == self::ITEMS_AS_OBJECT) {
+                if (isset($items[0])) {
+                    // array with direct objects
+                    $fa->items = $items[0];
+                } else {
+                    // array with map
+                    $fa->type = "object";
+                    $fa->additionalProperties = true;
+                }
+            } elseif ($this->getCollectionMode() == self::ITEMS_AS_LIST) {
+                // array with array of objects
                 $fa->items = $items;
             } else {
                 // collection of various schema using 'anyOf'
