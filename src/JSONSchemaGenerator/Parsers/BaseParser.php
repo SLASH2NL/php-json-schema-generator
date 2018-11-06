@@ -198,7 +198,7 @@ class BaseParser
         $prop = new Definition();
         $prop->setType($type)
              ->setCollectionMode($this->config['items_schema_collect_mode']
-                               ? Definition::ITEMS_AS_LIST
+                               ? $this->config['items_schema_collect_mode']
                                : Definition::ITEMS_AS_COLLECTION)
             ->setRequired($requiredDefault);
 
