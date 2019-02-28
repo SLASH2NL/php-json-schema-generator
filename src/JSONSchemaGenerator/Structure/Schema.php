@@ -68,7 +68,11 @@ class Schema extends Definition
     public function flatten()
     {
         $def = new \stdClass();
-        $def->{'$schema'} = $this->dollarSchema;
+
+        if ($this->dollarSchema) {
+            $def->{'$schema'} = $this->dollarSchema;
+        }
+
         foreach (parent::flatten() as $k => $v) {
             $def->$k = $v;
         }

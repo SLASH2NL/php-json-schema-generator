@@ -102,7 +102,7 @@ class BaseParser
 
         // namespace is schema_
         // try to set all the variables for the schema from the supplied config 
-        if (isset($this->config['schema_dollarSchema'])) {
+        if (array_key_exists('schema_dollarSchema', $this->config)) {
             $this->schemaObject->setDollarSchema($this->config['schema_dollarSchema']);
         }
 
