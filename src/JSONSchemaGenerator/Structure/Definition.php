@@ -424,8 +424,7 @@ class Definition implements \JsonSerializable
                 } else {
                     // array with map
                     $fa->type = "object";
-                    $fa->additionalProperties = new \StdClass();
-                    $fa->additionalProperties->type = "object";
+                    $fa->additionalProperties = true;
                 }
             } elseif ($this->getCollectionMode() == self::ITEMS_AS_LIST) {
                 // array with array of objects
